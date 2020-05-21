@@ -1,0 +1,11 @@
+Project TODO list:
+Backend:
+Finish DAO layer -> just a in-memory storage for repo
+Finish service layer -> use Main to implement
+File creation/deletion system -> where do new files live?
+Finish API layer
+
+
+
+Frontend:
+Setup basic react app
