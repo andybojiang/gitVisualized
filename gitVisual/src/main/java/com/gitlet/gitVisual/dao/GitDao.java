@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //FIXME: page is still in progress
 @Repository("gitDao")
 public class GitDao {
-
-
     /**
      * Creates a new repo with the correct directories
      */
