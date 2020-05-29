@@ -1,7 +1,6 @@
 package com.gitlet.gitVisual.service;
 
 import com.gitlet.gitVisual.dao.GitDao;
-import com.gitlet.gitVisual.model.Gitent;
 import com.gitlet.gitVisual.model.GitletException;
 import com.gitlet.gitVisual.model.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 //FIXME: page is still in progress
 @Service
 public class GitService {
@@ -20,245 +23,269 @@ public class GitService {
         this._gitdao = gitDao;
     }
 
-    public String process(String... args) {
+    public GitService() {
+        this._gitdao = new GitDao();
+    }
+
+    /**
+     * Adds a new user in the database.
+     */
+    public void addUser() {
+        UUID newId = UUID.randomUUID();
+        _gitdao.newUser(newId);
+    }
+    /**
+     * Removes user with UUID uuid from database.
+     */
+    public void removeUser(UUID uuid) {
+        _gitdao.removeUser(uuid);
+    }
+    /**
+     * Adds a file to the system for a specified user with file name and content.
+     */
+    public void addFile(UUID uuid, String name, String contents) {
+        _gitdao.addFile(uuid, name, contents);
+    }
+    /**
+     * Deletes file for a user.
+     */
+    public void removeFile(UUID uuid, String name) {
+        _gitdao.removeFile(uuid, name);
+    }
+    /**
+     * Edits the content of a file.
+     */
+    public void editFile(UUID uuid, String name, String newContents) {
+        _gitdao.removeFile(uuid, name);
+        _gitdao.addFile(uuid, name, newContents);
+    }
+
+    public List<String> process(UUID uuid, String... args) {
+        List<String> result = new ArrayList<>();
         if (args.length == 0) {
-            System.out.println("Please enter a command.");
-            System.exit(0);
-        }
-        try {
-            switch (args[0]) {
-                case "init":
-                    init(args);
-                    break;
-                case "add":
-                    add(args);
-                    break;
-                case "rm":
-                    rm(args);
-                    break;
-                case "commit":
-                    commit(args);
-                    break;
-                case "log":
-                    log(args);
-                    break;
-                case "global-log":
-                    globalLog(args);
-                    break;
-                case "find":
-                    find(args);
-                    break;
-                case "status":
-                    status(args);
-                    break;
-                case "checkout":
-                    checkout(args);
-                    break;
-                case "branch":
-                    branch(args);
-                    break;
-                case "rm-branch":
-                    rmBranch(args);
-                    break;
-                case "reset":
-                    reset(args);
-                    break;
-                case "merge":
-                    merge(args);
-                    break;
-                case "add-remote":
-                    addRemote(args);
-                    break;
-                case "rm-remote":
-                    rmRemote(args);
-                    break;
-                case "push":
-                    push(args);
-                    break;
-                case "fetch":
-                    fetch(args);
-                    break;
-                case "pull":
-                    pull(args);
-                    break;
-                default:
-                    System.out.println("No command with that name exists.");
-                    System.exit(0);
-                    break;
-            }
-        } catch (GitletException e) {
-            printError(e.getMessage());
-        }
-        return "Hello World";
-    }
-
-    private static void init(String... args) {
-        rightArgs(1, args);
-        //if system is already initialized
-        File system = new File(System.getProperty("user.dir"));
-        File gitlet = new File(".gitlet");
-        if (gitlet.exists()) {
-            printError("A Gitlet version-control system already exists in the current directory.");
+            result.add("Please enter a command.");
         } else {
-            gitlet.mkdir();
-            File blobs = new File(gitlet.getPath() + "/blobs");
-            blobs.mkdir();
-            File commits = new File(gitlet.getPath() + "/commits");
-            commits.mkdir();
-            File stage = new File(gitlet.getPath() + "/stage");
-            stage.mkdir();
-            Repo repo = new Repo(system, gitlet, blobs, commits, stage);
-            repo.init();
+            try {
+                switch (args[0]) {
+                    case "init":
+                        init(uuid, args);
+                        break;
+                    case "add":
+                        add(uuid, args);
+                        break;
+                    case "rm":
+                        rm(uuid, args);
+                        break;
+                    case "commit":
+                        commit(uuid, args);
+                        break;
+                    case "log":
+                        result.add(log(uuid, args));
+                        break;
+                    case "global-log":
+                        result.add(globalLog(uuid, args));
+                        break;
+                    case "find":
+                        result.add(find(uuid, args));
+                        break;
+                    case "status":
+                        result.add(status(uuid, args));
+                        break;
+                    case "checkout":
+                        checkout(uuid, args);
+                        break;
+                    case "branch":
+                        branch(uuid, args);
+                        break;
+                    case "rm-branch":
+                        rmBranch(uuid, args);
+                        break;
+                    case "reset":
+                        reset(uuid, args);
+                        break;
+                    case "merge":
+                        result.add(merge(uuid, args));
+                        break;
+                    /*
+                    case "add-remote":
+                        addRemote(uuid, args);
+                        break;
+                    case "rm-remote":
+                        rmRemote(uuid, args);
+                        break;
+                    case "push":
+                        push(uuid, args);
+                        break;
+                    case "fetch":
+                        fetch(uuid, args);
+                        break;
+                    case "pull":
+                        pull(uuid, args);
+                        break;
+                     */
+
+                    default:
+                        result.add("No command with that name exists.");
+                        break;
+                }
+            } catch (GitletException e) {
+                result.add(e.getMessage());
+            }
         }
+        return result;
     }
 
-    private static void add(String... args) {
+    private static void init(UUID uuid, String... args) {
+        rightArgs(1, args);
+        _gitdao.initRepo(uuid);
+        _gitdao.getRepo(uuid).init();
+    }
+
+    private static void add(UUID uuid,String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.add(args[1]);
     }
 
-    private static void rm(String... args) {
+    private static void rm(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.rm(args[1]);
     }
-    private static void commit(String... args) {
+    private static void commit(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.commit(args[1]);
     }
-    private static void log(String... args) {
+    private static String log(UUID uuid, String... args) {
         rightArgs(1, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
-        r.log();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
+        return r.log();
     }
 
-    private static void globalLog(String... args) {
+    private static String globalLog(UUID uuid, String... args) {
         rightArgs(1, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
-        r.globalLog();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
+        return r.globalLog();
     }
 
-    private static void find(String... args) {
+    private static String find(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
-        r.find(args[1]);
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
+        return r.find(args[1]);
     }
-    private static void status(String... args) {
+    private static String status(UUID uuid, String... args) {
         rightArgs(1, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
-        r.status();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
+        return r.status();
     }
-    private static void checkout(String... args) {
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+    private static void checkout(UUID uuid, String... args) {
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         if (args.length == 2) {
             r.checkBranch(args[1]);
             //checkout branch
         } else if (args.length == 3) {
             if (!args[1].equals("--")) {
-                printError("Incorrect operands");
-                System.exit(0);
+                throw new GitletException("Incorrect operands");
             } else {
                 r.checkout(r.getHead(), args[2]);
             }
         } else if (args.length == 4) {
             if (!args[2].equals("--")) {
-                printError("Incorrect operands");
-                System.exit(0);
+                throw new GitletException("Incorrect operands");
             } else {
                 r.checkout(args[1], args[3]);
             }
         } else {
-            printError("Incorrect operands");
-            System.exit(0);
+            throw new GitletException("Incorrect operands");
         }
     }
-    private static void branch(String... args) {
+    private static void branch(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.branch(args[1]);
     }
-    private static void rmBranch(String... args) {
+    private static void rmBranch(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.rmBranch(args[1]);
     }
 
-    private static void reset(String... args) {
+    private static void reset(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.reset(args[1]);
     }
 
-    private static void merge(String... args) {
+    private static String merge(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
-        r.merge(args[1]);
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
+        return r.merge(args[1]);
     }
 
-    private static void addRemote(String... args) {
+    private static void addRemote(UUID uuid, String... args) {
         rightArgs(3, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.addRemote(args[1], args[2]);
     }
 
-    private static void rmRemote(String... args) {
+    private static void rmRemote(UUID uuid, String... args) {
         rightArgs(2, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.rmRemote(args[1]);
     }
 
-    private static void push(String... args) {
+    private static void push(UUID uuid, String... args) {
         rightArgs(3, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.push(args[1], args[2]);
     }
 
-    private static void fetch(String... args) {
+    private static void fetch(UUID uuid, String... args) {
         rightArgs(3, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.fetch(args[1], args[2]);
     }
 
-    private static void pull(String... args) {
+    private static void pull(UUID uuid, String... args) {
         rightArgs(3, args);
-        alreadyInit();
-        Repo r = _gitdao.getRepo();
+        alreadyInit(uuid);
+        Repo r = _gitdao.getRepo(uuid);
         r.pull(args[1], args[2]);
     }
 
     /**
      * Returns if .gitlet has been initialized already.
      */
-    private static void alreadyInit() {
-        File gitlet = new File(".gitlet");
-        if (!gitlet.exists()) {
-            printError("Not in an initialized Gitlet directory.");
-            System.exit(0);
+    private static void alreadyInit(UUID uuid) {
+        if (_gitdao.getRepoMap().containsKey(uuid)) {
+            if (_gitdao.getRepoMap().get(uuid) != null) {
+                return;
+            }
         }
+        throw new GitletException("Not in an initialized Gitlet directory.");
+
     }
 
     private static void rightArgs(int correct, String... args) {
         if (args.length != correct) {
-            printError("Incorrect operands");
-            System.exit(0);
+            throw new GitletException("Incorrect operands");
         }
     }
 
@@ -270,6 +297,6 @@ public class GitService {
         System.out.println(msg);
     }
 
-
+    private static String DIR = "src/main/java/com/gitlet/gitVisual/dao/data/";
 
 }

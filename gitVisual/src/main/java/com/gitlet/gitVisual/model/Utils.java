@@ -14,7 +14,7 @@ import java.util.List;
 /** Assorted utilities.
  *  @author P. N. Hilfinger
  */
-class Utils {
+public class Utils {
 
     /* SHA-1 HASH VALUES. */
 
@@ -103,7 +103,7 @@ class Utils {
      *  creating or overwriting it as needed.  Each object in CONTENTS may be
      *  either a String or a byte array.  Throws IllegalArgumentException
      *  in case of problems. */
-    static void writeContents(File file, Object... contents) {
+    public static void writeContents(File file, Object... contents) {
         try {
             if (file.isDirectory()) {
                 throw

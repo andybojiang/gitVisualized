@@ -118,13 +118,13 @@ public class Repo extends Gitent{
     /**
      * Prints log messages starting with the current head commit.
      */
-    public void log() {
-        logHelper(getCommit(_head));
+    public String log() {
+        return logHelper(getCommit(_head));
     }
     /**
      * Recursively prints log messages for every first parent of a commit.
      */
-    private void logHelper(Commit c) {
+    private String logHelper(Commit c) {
 
         String log =  "===\n" + "commit " + c.getEncryption()
                 + "\n";
@@ -133,68 +133,73 @@ public class Repo extends Gitent{
         }
         log += "Date: " + c.time() + "\n" + c.getMessage() + "\n";
 
-        printMsg(log);
-
         if (c.firstParent() != null) {
-            logHelper(getCommit(c.firstParent()));
+            log += logHelper(getCommit(c.firstParent()));
         }
+
+        return log;
     }
     /**
      * Like log, except displays information about all commits ever made. The order of the commits does not matter.
      */
-    public void globalLog() {
-        for (String commitCode : Utils.plainFilenamesIn(_commitDir)) {
+    public String globalLog() {
+        String result = "";
+        for (String commitCode : _branches.values()) {
             Commit c = getCommit(commitCode);
-            logHelper(c);
+            result += logHelper(c);
         }
+        return result;
     }
     /**
      * Prints out the ids of all commits that have the given commit message, one per line.
      */
-    public void find(String msg) {
+    public String find(String msg) {
         boolean found = false;
+        String result = "";
         for (String commitCode : Utils.plainFilenamesIn(_commitDir)) {
             Commit c = getCommit(commitCode);
             if (c.getMessage().equals(msg)) {
                 found = true;
-                printMsg(c.getEncryption());
+                result += c.getEncryption() + "\n";
             }
         }
         if (!found) {
             throw new GitletException("Found no commit with that message.");
         }
+        return result;
     }
     /**
      * Displays what branches currently exist, and marks the current branch with a *.
      */
-    public void status() {
+    public String status() {
         Commit head = getCommit(_head);
-        printMsg("=== Branches ===");
+        String result = "";
+        result += "=== Branches ===" + "\n";
         ArrayList<String> keyset = new ArrayList<String>(_branches.keySet());
         Collections.sort(keyset);
         for (String br : keyset) {
             if (br.equals(_currentBranch)) {
-                printMsg("*" + br);
+                result += "*" + br + "\n";
             } else {
-                printMsg(br);
+                result += br + "\n";
             }
         }
-        printMsg("");
-        printMsg("=== Staged Files ===");
+        result += "\n";
+        result += ("=== Staged Files ===") + "\n";
         ArrayList<String> stagedset = new ArrayList<String>(_stage.keySet());
         Collections.sort(stagedset);
         for (String staged : stagedset) {
-            printMsg(staged);
+            result += staged + "\n";
         }
-        printMsg("");
-        printMsg("=== Removed Files ===");
+        result += "\n";
+        result += "=== Removed Files ==="+ "\n";
         ArrayList<String> copyRemove = new ArrayList<String>(_remove);
         Collections.sort(copyRemove);
         for (String removed : copyRemove) {
-            printMsg(removed);
+            result += (removed) + "\n";
         }
-        printMsg("");
-        printMsg("=== Modifications Not Staged For Commit ===");
+        result += "\n";
+        result +=("=== Modifications Not Staged For Commit ===") + "\n";
         HashMap<String, String> modifiedNotStatged = new HashMap<String, String>();
         for (String f : Utils.plainFilenamesIn(_systemDir)) {
             Blob b = new Blob(new File(_systemDir + "/" + f));
@@ -215,17 +220,18 @@ public class Repo extends Gitent{
             }
         }
         for (String f : modifiedNotStatged.keySet()) {
-            printMsg(f + modifiedNotStatged.get(f));
+            result += (f + modifiedNotStatged.get(f)) + "\n";
         }
-        printMsg("");
-        printMsg("=== Untracked Files ===");
+        result += "\n";
+        result += ("=== Untracked Files ===") + "\n";
         List<String> systemFiles = Utils.plainFilenamesIn(_systemDir);
         for (String f : systemFiles) {
             if (!_stage.containsKey(f) && !head.containsBlob(f)) {
-                printMsg(f);
+                result += (f) + "\n";
             }
         }
-        printMsg("");
+        result += "\n";
+        return result;
     }
 
     /**
@@ -384,7 +390,8 @@ public class Repo extends Gitent{
     /**
      * Merges a given branch with the current branch.
      */
-    public void merge(String branchName) {
+    public String merge(String branchName) {
+        String result = "";
         if (!_branches.containsKey(branchName)) {
             throw new GitletException("A branch with that name does not exist.");
         } else if (branchName.equals(_currentBranch)) {
@@ -399,11 +406,11 @@ public class Repo extends Gitent{
         }
         Commit split = findSplit(current, other);
         if (split.equals(other)) {
-            printMsg("Given branch is an ancestor of the current branch.");
+            result += ("Given branch is an ancestor of the current branch.") + "\n";
             System.exit(0);
         } else if (split.equals(current)) {
             checkBranch(branchName);
-            printMsg("Current branch fast-forwarded.");
+            result += ("Current branch fast-forwarded.") + "\n";
             System.exit(0);
         }
 
@@ -441,10 +448,11 @@ public class Repo extends Gitent{
             }
         }
         if (conflict) {
-            printMsg("Encountered a merge conflict.");
+            result += ("Encountered a merge conflict.") + "\n";
         }
         mergeCommit(String.format("Merged %s into %s.", branchName, _currentBranch), current, other);
         this.toFile(_gitlet, "repository");
+        return result;
     }
 
     private void mergeCommit(String msg, Commit curr, Commit other) {
