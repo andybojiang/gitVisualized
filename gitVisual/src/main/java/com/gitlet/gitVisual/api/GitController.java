@@ -55,5 +55,5 @@ public class GitController {
         //return _gitService.process(args);
         return(this._gitService.process(id, command.getCommand()));
     }
-    
+
 }
