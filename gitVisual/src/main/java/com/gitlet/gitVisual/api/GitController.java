@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +24,10 @@ public class GitController {
     }
 
     @PostMapping
-    public void addUser() {
+    public String addUser() {
+        System.out.println("filthy");
         this._gitService.addUser();
+        return "fakeUUID";
     }
 
     @DeleteMapping(path = "{id}")
@@ -53,5 +56,16 @@ public class GitController {
     public List<String> process(@PathVariable("id") UUID id, @RequestBody GitCommand command) {
         //return _gitService.process(args);
         return(this._gitService.process(id, command.getCommand()));
+    }
+
+    @PostMapping(path = "fakeUUID")
+    public List<String> testMethod(@RequestBody GitCommand command) {
+        //return _gitService.process(args);
+        ArrayList<String> tester = new ArrayList<String>();
+//        tester.add("String 1");
+//        tester.add("String 2");
+        tester.add("args are: " + command.getCommand()[0] + command.getCommand()[1]);
+
+        return tester;
     }
 }
