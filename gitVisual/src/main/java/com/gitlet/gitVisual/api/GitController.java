@@ -23,8 +23,8 @@ public class GitController {
     }
 
     @PostMapping
-    public void addUser() {
-        this._gitService.addUser();
+    public String addUser() {
+        return this._gitService.addUser();
     }
 
     @DeleteMapping(path = "{id}")

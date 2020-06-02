@@ -2,25 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5510036-9602-4338-b712-d3e0b8174921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/DataFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/GitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/RepoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/service/ServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitVisual.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gitVisual.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/api/GitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/api/GitController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/GitDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/GitDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/GitletException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/GitletException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/Repo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/Repo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/service/GitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/service/GitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/dao/GitDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/dao/GitDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/GitletException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/GitletException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Repo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Repo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/model/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/service/GitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/service/GitService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,16 +303,21 @@
     </state>
     <state x="265" y="58" key="SettingsEditor/0.23.1440.792@0.23.1440.792" timestamp="1590088703350" />
     <state x="471" y="82" key="SettingsEditor/0.23.2560.1325@0.23.2560.1325" timestamp="1590284728430" />
-    <state x="499" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1590696163570">
+    <state x="499" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1591052407707">
       <screen x="0" y="23" width="1440" height="795" />
     </state>
     <state x="499" y="251" key="com.intellij.ide.util.TipDialog/0.23.1440.788@0.23.1440.788" timestamp="1590553682061" />
     <state x="499" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.792@0.23.1440.792" timestamp="1590126043319" />
-    <state x="499" y="253" key="com.intellij.ide.util.TipDialog/0.23.1440.795@0.23.1440.795" timestamp="1590696163570" />
+    <state x="499" y="253" key="com.intellij.ide.util.TipDialog/0.23.1440.795@0.23.1440.795" timestamp="1591052407707" />
+    <state x="887" y="407" key="com.intellij.ide.util.TipDialog/0.23.2560.1326@0.23.2560.1326" timestamp="1590888116939" />
     <state x="968" y="149" width="1949" height="1033" key="dock-window-1" timestamp="1590645503167">
       <screen x="0" y="23" width="2560" height="1326" />
     </state>
     <state x="968" y="149" width="1949" height="1033" key="dock-window-1/0.23.2560.1326@0.23.2560.1326" timestamp="1590645503167" />
+    <state x="451" y="23" width="837" height="795" key="find.popup" timestamp="1590788236878">
+      <screen x="0" y="23" width="1440" height="795" />
+    </state>
+    <state x="451" y="23" width="837" height="795" key="find.popup/0.23.1440.795@0.23.1440.795" timestamp="1590788236878" />
     <state x="526" y="189" key="run.anything.popup" timestamp="1590086958574">
       <screen x="0" y="23" width="1440" height="792" />
     </state>
