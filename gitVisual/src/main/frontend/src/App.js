@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ApiConnection from './ApiConnection'
 
 
@@ -6,10 +6,8 @@ import './App.css';
 
 
 class App extends React.Component {
-  // This wrapper layer is unnecessary, will get rid of
-  constructor(props) {
-    super(props)
-  }
+  // This wrapper layer is useless, will get rid of
+
   render() {
     return (
       <>
