@@ -7,7 +7,7 @@ function ApiConnection() {
   const [s, setS] = useState([]);
 
   const fetchInfo = () => {
-    axios.get("http://localhost:8080/api/v1/git").then(res => {//GET request to backend, .then handles data sent back
+    axios.post("http://localhost:8080/api/v1/git").then(res => {//GET request to backend, .then handles data sent back
       console.log(res);
       setS(res.data);//what is res.data exactly?
     });
@@ -21,6 +21,7 @@ function ApiConnection() {
 
   return(
     <div>
+      
       <h1>{s}</h1>
     </div>
   )
