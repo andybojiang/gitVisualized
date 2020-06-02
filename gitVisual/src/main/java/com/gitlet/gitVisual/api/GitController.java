@@ -25,9 +25,7 @@ public class GitController {
 
     @PostMapping
     public String addUser() {
-        System.out.println("filthy");
-        this._gitService.addUser();
-        return "fakeUUID";
+        return this._gitService.addUser();
     }
 
     @DeleteMapping(path = "{id}")
@@ -57,15 +55,5 @@ public class GitController {
         //return _gitService.process(args);
         return(this._gitService.process(id, command.getCommand()));
     }
-
-    @PostMapping(path = "fakeUUID")
-    public List<String> testMethod(@RequestBody GitCommand command) {
-        //return _gitService.process(args);
-        ArrayList<String> tester = new ArrayList<String>();
-//        tester.add("String 1");
-//        tester.add("String 2");
-        tester.add("args are: " + command.getCommand()[0] + command.getCommand()[1]);
-
-        return tester;
-    }
+    
 }

@@ -30,9 +30,10 @@ public class GitService {
     /**
      * Adds a new user in the database.
      */
-    public void addUser() {
+    public String addUser() {
         UUID newId = UUID.randomUUID();
         _gitdao.newUser(newId);
+        return newId.toString();
     }
     /**
      * Removes user with UUID uuid from database.

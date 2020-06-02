@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-//FIXME: page is still in progress
 @Repository("gitDao")
 public class GitDao {
 
@@ -23,8 +22,18 @@ public class GitDao {
     public void removeUser(UUID id) {
         File user = new File("src/main/java/com/gitlet/gitVisual/dao/data/" + id.toString());
         //FIXME: need to be able to delete folder with files in it recursively
-        user.delete();
+        deleteDirectory(user);
         _repos.remove(id);
+    }
+
+    private boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 
     public void addFile(UUID uuid, String name, String contents) {
@@ -55,7 +64,6 @@ public class GitDao {
 
 
     public void initRepo(UUID id) {
-        //FIXME
         File system = new File("src/main/java/com/gitlet/gitVisual/dao/data/" + id.toString());
         File gitlet = new File(system.getPath() + "/.gitlet");
         if (gitlet.exists()) {
