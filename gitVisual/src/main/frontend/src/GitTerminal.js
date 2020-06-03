@@ -1,20 +1,25 @@
 import React from 'react'
 import Terminal from 'terminal-in-react'
 
-// git-init <args>
-
-
 function GitTerminal(props) {
+    function printUUID(args, print, runCommand) {
+        print('here')
+        print(props.UUID)
+    }
 
     return (
+
+        <>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;500&display=swap" rel="stylesheet"></link>
         <Terminal
             color='green'
             backgroundColor='black'
             barColor='black'
-            style={{ fontWeight: "bold", fontSize: "1em" }}
-            commandPassThrough={cmd => `-not a git repository or not a valid command:${cmd}: `}
+            style={{ fontFamily: 'Source Code Pro', fontSize: "1em" }}
+            commandPassThrough={cmd => `Not a git repository or not a valid command:${cmd}: `}
             msg='Type help to see all commands'
             commands={{
+                'UUID': printUUID,
                 'git init': '',
                 'git add <file name>': '',
                 'git rm <file name>': '',
@@ -35,6 +40,7 @@ function GitTerminal(props) {
                 'show': false,
             }}
         />
+        </>
     )
 
 }

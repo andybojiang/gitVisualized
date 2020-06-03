@@ -3,8 +3,6 @@ import axios from 'axios'
 import GitTerminal from './GitTerminal';
 import Stage from './Stage'
 
-
-
 class ApiConnection extends Component {
     constructor() {
         super()
@@ -14,14 +12,13 @@ class ApiConnection extends Component {
             fileStage: []
         }
         this.process = this.process.bind(this)
-        this.addFile = this.addFile.bind(this)
         this.getMap = this.getMap.bind(this)
+        this.newFile = this.newFile.bind(this)
     }
 
-    getMap() {
-        return this.state.address + '/' + this.state.UUID
+    getMap(mapping) {
+        return this.state.address + '/' + this.state.UUID + mapping
     }
-
 
     process(args, print, runCommand) {
         // TODO: Commit message bug
@@ -29,7 +26,7 @@ class ApiConnection extends Component {
         // print('running process: ' + args)
         // print('mapping: ' + this.getMap())
         args.shift()
-        axios.post(this.getMap(), { command: args }).then(response => {
+        axios.post(this.getMap(''), { command: args }).then(response => {
             print(response.data)
         })
     }
@@ -42,25 +39,29 @@ class ApiConnection extends Component {
         })
     }
 
-    addFile() {
+    newFile(fileName, contents) {
         // TODO: post to add file
+        axios.post(this.getMap('/file/add'), {
+            filename: fileName,
+            contents: contents
+        })
     }
-
 
     render() {
         window.addEventListener("beforeunload", (ev) => {
-            axios.delete(this.getMap())
+            axios.delete(this.getMap(''))
             ev.preventDefault()
             return ev.returnValue = 'Are you sure you want to close?'
         })
         return (
             <div>
                 <GitTerminal
-                    process={this.process}
+                    process = {this.process}
+                    UUID = {this.state.UUID}
                 />
                 <Stage
-                    fileStage={this.state.fileStage}
-                    addFile={this.addFile}
+                    fileStage = {this.state.fileStage}
+                    newFile = {this.newFile}
                     // TODO: Pass down stage elements, addFile and deleteFile
                 />
             </div>

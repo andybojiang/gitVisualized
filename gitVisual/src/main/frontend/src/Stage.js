@@ -14,7 +14,8 @@ class Stage extends React.Component {
     // MAJOR TODO: Convert these to actual calls to backend and just have this class render whatever props.fileStage passes down
 
     newFile(promptName, promptContent) {
-        // ADD A FILE TO BACKEND USING PROPS//
+        // NEW FILE TO BACKEND USING PROPS//
+        this.props.newFile(promptName, promptContent)
         this.setState({
             stageArea: [
                 ...this.state.stageArea,
@@ -54,14 +55,13 @@ class Stage extends React.Component {
                         prompt("enter a file name"), prompt("enter the file contents"))}>
                     new file
                 </button>
-                <button
+                {/* <button
                     className="add-file-button"
                     onClick={() => this.addFile(
                         prompt("enter a file name"))}>
                     add file
-                </button>
+                </button> */}
                 <div className="stage-area">
-                    {/* LOAD FILES FROM PROPS INSTEAD */}
                     {this.state.stageArea.map(stageItem => (
                         <File
                             key = {stageItem.id}
