@@ -665,6 +665,10 @@ public class Repo extends Gitent{
         }
     }
 
+    public HashMap<String, String> get_stage() {
+        return _stage;
+    }
+
     /**
      * Helper function to print messages.
      * @param msg The message.
@@ -689,6 +693,9 @@ public class Repo extends Gitent{
     protected String _head;
     /**Maps the name of the branch to the encryption of its corresponding commit.*/
     protected HashMap<String, String> _branches;
+
+
+
     /** Represents the staging area. Maps _name of an added blob to its _encryption.*/
     protected HashMap<String, String> _stage;
     /** Represents the removing area. Contains names of files to be removed.*/
