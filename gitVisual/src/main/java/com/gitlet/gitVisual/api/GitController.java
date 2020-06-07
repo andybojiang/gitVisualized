@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,4 +60,5 @@ public class GitController {
     public List<DataFile> getFilesStructure(@PathVariable("id") UUID id) {
         return this._gitService.getFilesStructure(id);
     }
+
 }

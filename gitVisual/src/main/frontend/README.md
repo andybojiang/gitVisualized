@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Dependencies
+
+To start the frontend, you need to install the nice react terminal with
+
+### `npm install terminal-in-react --save`
+or
+### `yarn add terminal-in-react`
+
 ## Available Scripts
 
 In the project directory, you can run:
