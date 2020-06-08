@@ -12,7 +12,7 @@ function GitTerminal(props) {
             backgroundColor='black'
             barColor='black'
             style={{ fontFamily: 'Source Code Pro', fontSize: "1em" }}
-            commandPassThrough={cmd => `Not a git repository or not a valid command:${cmd}: `}
+            commandPassThrough={cmd => `Not a valid command or not a git repository: ${cmd}`}
             msg='Type help to see all commands'
             commands={{
                 // 'UUID': props.printUUID,
