@@ -1,17 +1,40 @@
 package com.gitlet.gitVisual.dao;
 
+import com.gitlet.gitVisual.model.DataFile;
 import com.gitlet.gitVisual.model.GitletException;
 import com.gitlet.gitVisual.model.Repo;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.gitlet.gitVisual.model.Utils;
+
+import javax.xml.crypto.Data;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Repository("gitDao")
 public class GitDao {
+
+    public List<DataFile> getFileStructure(UUID uuid) {
+        File user = new File("src/main/java/com/gitlet/gitVisual/dao/data/" + uuid.toString());
+        List<String> files = Utils.plainFilenamesIn(user);
+        Repo r = _repos.get(uuid);
+        List<DataFile> result = new ArrayList<>();
+        for (String fname : files) {
+            DataFile df = new DataFile(fname, Utils.readContentsAsString(new File(user.getPath() + "/" + fname)));
+            if (r != null && r.get_stage().containsKey(fname)) {
+                df.setStatus(1);
+
+            } else if (r != null && r.getCommit(r.getHead()).containsBlob(fname)) {
+                df.setStatus(2);
+
+            } else {
+                df.setStatus(0);
+            }
+            result.add(df);
+        }
+        return result;
+    }
+
 
     public void newUser(UUID id) {
         File user = new File("src/main/java/com/gitlet/gitVisual/dao/data/" + id.toString());

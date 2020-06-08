@@ -35,25 +35,30 @@ public class GitController {
 
     @PostMapping(path = "{id}/file/add")
     public void addFile(@PathVariable("id") UUID uuid, @RequestBody DataFile datafile) {
-        this._gitService.addFile(uuid, datafile.getName(), datafile.getContents());
+        this._gitService.addFile(uuid, datafile.getFilename(), datafile.getContents());
     }
 
 
     @DeleteMapping (path = "{id}/file")
     public void removeFile(@PathVariable("id") UUID uuid, @RequestBody DataFile datafile) {
         //FIXME: need to find out how to make this variable optional
-        this._gitService.removeFile(uuid, datafile.getName());
+        this._gitService.removeFile(uuid, datafile.getFilename());
     }
 
     @PostMapping(path = "{id}/file/edit")
     public void editFile(@PathVariable("id") UUID id, @RequestBody DataFile datafile) {
-        this._gitService.editFile(id, datafile.getName(), datafile.getContents());
+        this._gitService.editFile(id, datafile.getFilename(), datafile.getContents());
     }
 
     @PostMapping(path = "{id}")
     public List<String> process(@PathVariable("id") UUID id, @RequestBody GitCommand command) {
         //return _gitService.process(args);
         return(this._gitService.process(id, command.getCommand()));
+    }
+
+    @GetMapping(path = "{id}")
+    public List<DataFile> getFilesStructure(@PathVariable("id") UUID id) {
+        return this._gitService.getFilesStructure(id);
     }
 
 }

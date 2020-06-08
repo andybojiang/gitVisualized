@@ -1,6 +1,7 @@
 package com.gitlet.gitVisual.service;
 
 import com.gitlet.gitVisual.dao.GitDao;
+import com.gitlet.gitVisual.model.DataFile;
 import com.gitlet.gitVisual.model.GitletException;
 import com.gitlet.gitVisual.model.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class GitService {
 
     public GitService() {
         this._gitdao = new GitDao();
+    }
+
+
+
+    public List<DataFile> getFilesStructure(UUID uuid) {
+        return _gitdao.getFileStructure(uuid);
     }
 
     /**
