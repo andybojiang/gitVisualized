@@ -2,10 +2,6 @@ import React from 'react'
 import Terminal from 'terminal-in-react'
 
 function GitTerminal(props) {
-    function printUUID(args, print, runCommand) {
-        print('here')
-        print(props.UUID)
-    }
 
     return (
 
@@ -19,7 +15,7 @@ function GitTerminal(props) {
             commandPassThrough={cmd => `Not a git repository or not a valid command:${cmd}: `}
             msg='Type help to see all commands'
             commands={{
-                'UUID': printUUID,
+                // 'UUID': props.printUUID,
                 'git init': '',
                 'git add <file name>': '',
                 'git rm <file name>': '',

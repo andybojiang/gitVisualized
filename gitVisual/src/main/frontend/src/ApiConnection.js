@@ -14,6 +14,7 @@ class ApiConnection extends Component {
         this.process = this.process.bind(this)
         this.getMap = this.getMap.bind(this)
         this.newFile = this.newFile.bind(this)
+        this.printUUID = this.printUUID.bind(this)
     }
 
     getMap(mapping) {
@@ -47,6 +48,11 @@ class ApiConnection extends Component {
         })
     }
 
+    // For debugging
+    printUUID(args, print, runCommand) {
+        print(this.state.UUID)
+    }
+
     render() {
         window.addEventListener("beforeunload", (ev) => {
             axios.delete(this.getMap(''))
@@ -57,7 +63,7 @@ class ApiConnection extends Component {
             <div>
                 <GitTerminal
                     process = {this.process}
-                    UUID = {this.state.UUID}
+                    // printUUID = {this.printUUID}
                 />
                 <Stage
                     fileStage = {this.state.fileStage}
