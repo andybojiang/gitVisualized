@@ -15,7 +15,6 @@ function GitTerminal(props) {
             commandPassThrough={cmd => `Not a valid command or not a git repository: ${cmd}`}
             msg='Type help to see all commands'
             commands={{
-                // 'UUID': props.printUUID,
                 'git init': '',
                 'git add <file name>': '',
                 'git rm <file name>': '',

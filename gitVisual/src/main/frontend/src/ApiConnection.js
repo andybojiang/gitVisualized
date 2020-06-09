@@ -15,6 +15,7 @@ class ApiConnection extends Component {
         this.getMap = this.getMap.bind(this)
         this.newFile = this.newFile.bind(this)
         this.printUUID = this.printUUID.bind(this)
+        this.updateStage = this.updateStage.bind(this)
     }
 
     getMap(mapping) {
@@ -23,12 +24,13 @@ class ApiConnection extends Component {
 
     process(args, print, runCommand) {
         // TODO: Commit message bug
-        // Debug messages:
-        // print('running process: ' + args)
-        // print('mapping: ' + this.getMap())
         args.shift()
         axios.post(this.getMap(''), { command: args }).then(response => {
             print(response.data)
+        })
+        this.updateStage()
+        this.state.fileStage.map(item => {
+            print(item.filename)
         })
     }
 
@@ -46,11 +48,22 @@ class ApiConnection extends Component {
             filename: fileName,
             contents: contents
         })
+        this.updateStage()
     }
 
     // For debugging
     printUUID(args, print, runCommand) {
         print(this.state.UUID)
+    }
+
+    updateStage() {
+        console.log('updated?')
+        axios.get(this.getMap('')).then(response => {
+            console.log(response.data[0].contents)
+            this.setState({
+                fileStage: response.data
+            })
+        })
     }
 
     render() {
@@ -63,7 +76,7 @@ class ApiConnection extends Component {
             <div>
                 <GitTerminal
                     process = {this.process}
-                    // printUUID = {this.printUUID}
+                    getter = {this.getter}
                 />
                 <Stage
                     fileStage = {this.state.fileStage}
