@@ -16,6 +16,7 @@ class ApiConnection extends Component {
         this.newFile = this.newFile.bind(this)
         this.printUUID = this.printUUID.bind(this)
         this.updateStage = this.updateStage.bind(this)
+        this.deleteFile = this.deleteFile.bind(this)
     }
 
     getMap(mapping) {
@@ -25,13 +26,45 @@ class ApiConnection extends Component {
     process(args, print, runCommand) {
         // TODO: Commit message bug
         args.shift()
+        if (args[0] === 'commit' && args.length > 1) {
+            let lastWord = args[args.length - 1]
+            if (args[1].charAt(0) !== '"' || lastWord.charAt(lastWord.length - 1) !== '"') {
+                print('commit message must be wrapped in quotations "like this"')
+                return
+            } else {
+                let message = ""
+                for (var i = 1; i < args.length; i += 1) {
+                    message += " " + args[i]
+                }
+                args[1] = message
+                args.splice(2, args.length)
+            }
+        }
         axios.post(this.getMap(''), { command: args }).then(response => {
             print(response.data)
         })
         this.updateStage()
-        this.state.fileStage.map(item => {
-            print(item.filename)
-        })
+        this.updateStage()
+        // this.state.fileStage.map(item => {
+        //     print(item.filename)
+        // })
+    }
+
+    combineMessage(args) {
+        if (args[0] === 'commit' && args.length > 1) {
+            let lastWord = args[args.length - 1]
+            if (args[1].charAt(0) !== '"' || lastWord.charAt(lastWord.length - 1) !== '"') {
+                print('commit message must be wrapped in quotations "like this"')
+                return
+            } else {
+                let message = ""
+                for (var i = 1; i < args.length; i += 1) {
+                    message += " " + args[i]
+                }
+                args[1] = message
+                args.splice(2, args.length)
+            }
+        }
     }
 
     componentDidMount() {
@@ -44,10 +77,22 @@ class ApiConnection extends Component {
 
     newFile(fileName, contents) {
         // TODO: post to add file
+        this.updateStage()
         axios.post(this.getMap('/file/add'), {
             filename: fileName,
             contents: contents
         })
+        this.updateStage()
+        this.updateStage()
+    }
+
+    deleteFile(fileName, contents) {
+        this.updateStage()
+        axios.delete(this.getMap('/file'), {
+            filename: fileName,
+            contents: contents
+        })
+        this.updateStage()
         this.updateStage()
     }
 
@@ -57,9 +102,11 @@ class ApiConnection extends Component {
     }
 
     updateStage() {
-        console.log('updated?')
+        console.log('updating...')
         axios.get(this.getMap('')).then(response => {
-            console.log(response.data[0].contents)
+            response.data.map(item => {
+                console.log(item.filename)
+            })
             this.setState({
                 fileStage: response.data
             })
@@ -81,6 +128,7 @@ class ApiConnection extends Component {
                 <Stage
                     fileStage = {this.state.fileStage}
                     newFile = {this.newFile}
+                    deleteFile = {this.deleteFile}
                     // TODO: Pass down stage elements, addFile and deleteFile
                 />
             </div>

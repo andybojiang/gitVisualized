@@ -4,33 +4,25 @@
     <list default="true" id="c937569b-44e5-423e-b46c-e95e561fa7df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/GitTerminal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/GitTerminal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/.gitlet/blobs/7c800871ebfee820eefb6c2bf8818a69605b17e9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/.gitlet/commits/38d36785415547a54f27649077b3eb0550ea2fd7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/.gitlet/commits/67718b7dd8f410ca4171bf97951e11dc729ae60e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/.gitlet/repository" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/bye.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/9365d6dd-2d97-49be-8303-ae356392521f/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/blobs/2a86465b5ca27ba2f7f7a5f9d4238cf74087eb94" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/blobs/f44647ab76ade8176ee665059d9d4a2189e72ef1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/blobs/fb5f91693be41fa86fc3d63cb365d30ee516d4dd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/commits/67718b7dd8f410ca4171bf97951e11dc729ae60e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/commits/7a61a863f40a9145c7eb68cfb2d4269be2c969d5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/.gitlet/repository" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/cat.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/dot.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/lol.wug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/dao/data/a1fcb30d-0d62-4ba8-af66-28496f97e043/name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/File.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/File.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1d5Srknd01y1f8GkvFkHouuT6vK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="GitVisualApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -66,21 +58,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="914" height="184" key="GridCell.Tab.0.bottom" timestamp="1591683872757">
+    <state width="914" height="156" key="GridCell.Tab.0.bottom" timestamp="1591735895367">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="184" key="GridCell.Tab.0.bottom/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591683872757" />
-    <state width="914" height="184" key="GridCell.Tab.0.center" timestamp="1591683872756">
+    <state width="914" height="156" key="GridCell.Tab.0.bottom/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.center" timestamp="1591735895367">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="184" key="GridCell.Tab.0.center/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591683872756" />
-    <state width="914" height="184" key="GridCell.Tab.0.left" timestamp="1591683872755">
+    <state width="914" height="156" key="GridCell.Tab.0.center/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.left" timestamp="1591735895367">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="184" key="GridCell.Tab.0.left/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591683872755" />
-    <state width="914" height="184" key="GridCell.Tab.0.right" timestamp="1591683872756">
+    <state width="914" height="156" key="GridCell.Tab.0.left/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.right" timestamp="1591735895367">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="184" key="GridCell.Tab.0.right/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591683872756" />
+    <state width="914" height="156" key="GridCell.Tab.0.right/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
   </component>
 </project>
