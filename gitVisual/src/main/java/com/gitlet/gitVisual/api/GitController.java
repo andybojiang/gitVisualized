@@ -1,8 +1,10 @@
 package com.gitlet.gitVisual.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gitlet.gitVisual.model.CytoscapeObj;
 import com.gitlet.gitVisual.model.DataFile;
 import com.gitlet.gitVisual.model.GitCommand;
+import com.gitlet.gitVisual.model.repo.CytoscapeElements;
 import com.gitlet.gitVisual.service.GitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -59,6 +61,11 @@ public class GitController {
     @GetMapping(path = "{id}")
     public List<DataFile> getFilesStructure(@PathVariable("id") UUID id) {
         return this._gitService.getFilesStructure(id);
+    }
+
+    @GetMapping(path = "{id}/elements")
+    public CytoscapeElements getLatestElements(@PathVariable("id") UUID id) {
+        return this._gitService.getLatestElements(id);
     }
 
 }

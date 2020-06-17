@@ -1,11 +1,8 @@
 package com.gitlet.gitVisual.dao;
 
-import com.gitlet.gitVisual.model.DataFile;
-import com.gitlet.gitVisual.model.GitletException;
-import com.gitlet.gitVisual.model.Repo;
+import com.gitlet.gitVisual.model.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.gitlet.gitVisual.model.Utils;
 
 import javax.xml.crypto.Data;
 import java.io.File;
@@ -14,6 +11,14 @@ import java.util.*;
 @Repository("gitDao")
 public class GitDao {
 
+
+
+    /**
+     * Reads files in a user's system and convert them to "datafile" objects that describe their status
+     * within the git system.
+     * @param uuid specifies the user.
+     * @return List of datafiles.
+     */
     public List<DataFile> getFileStructure(UUID uuid) {
         File user = new File("src/main/java/com/gitlet/gitVisual/dao/data/" + uuid.toString());
         List<String> files = Utils.plainFilenamesIn(user);
