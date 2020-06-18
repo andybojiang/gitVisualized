@@ -41,8 +41,7 @@ class Stage extends React.Component {
                 <h1>CWD</h1>
                 <button
                     className="add-file-button"
-                    onClick={() => this.props.newFile(
-                        prompt("enter a file name"), prompt("enter the file contents"))}>
+                    onClick={() => this.props.newFile()}>
                     new file
                 </button>
                 <div className="stage-area">

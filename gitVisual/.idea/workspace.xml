@@ -4,7 +4,6 @@
     <list default="true" id="c937569b-44e5-423e-b46c-e95e561fa7df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/File.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/File.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

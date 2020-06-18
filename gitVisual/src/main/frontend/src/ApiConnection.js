@@ -25,6 +25,7 @@ class ApiConnection extends Component {
 
     process(args, print, runCommand) {
         // TODO: Commit message bug
+        this.updateStage()
         args.shift()
         if (args[0] === 'commit' && args.length > 1) {
             let lastWord = args[args.length - 1]
@@ -54,7 +55,7 @@ class ApiConnection extends Component {
         if (args[0] === 'commit' && args.length > 1) {
             let lastWord = args[args.length - 1]
             if (args[1].charAt(0) !== '"' || lastWord.charAt(lastWord.length - 1) !== '"') {
-                print('commit message must be wrapped in quotations "like this"')
+                // print('commit message must be wrapped in quotations "like this"')
                 return
             } else {
                 let message = ""
@@ -75,15 +76,24 @@ class ApiConnection extends Component {
         })
     }
 
-    newFile(fileName, contents) {
+    newFile() {
         // TODO: post to add file
         this.updateStage()
+
+        let fileName = prompt('Enter a file name')
+        while (fileName.split(' ').length > 1) {
+            fileName = prompt('File name must be one word')
+        }
+        let contents = prompt('Enter the file contents')
+
         axios.post(this.getMap('/file/add'), {
             filename: fileName,
             contents: contents
         })
         this.updateStage()
         this.updateStage()
+        // this.updateStage()
+        // this.updateStage()
     }
 
     deleteFile(fileName, contents) {
@@ -104,12 +114,12 @@ class ApiConnection extends Component {
     updateStage() {
         console.log('updating...')
         axios.get(this.getMap('')).then(response => {
-            response.data.map(item => {
-                console.log(item.filename)
-            })
             this.setState({
                 fileStage: response.data
             })
+        })
+        axios.post(this.getMap(''), { command: 'git' }).then(response1 => {
+            console.log(response1.data)
         })
     }
 
