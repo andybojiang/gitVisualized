@@ -5,6 +5,31 @@
   min-height: 100vh;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.terminal {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.graph {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.stage {
+  grid-column: 1;
+  grid-row: 2;
+}
+
 .title {
   margin-top: 0;
   font-family: "Roboto", sans-serif;

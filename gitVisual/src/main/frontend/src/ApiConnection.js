@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import GitTerminal from './GitTerminal';
 import Stage from './Stage'
+import Graph from './Graph'
 
 class ApiConnection extends Component {
     constructor() {
@@ -25,6 +26,8 @@ class ApiConnection extends Component {
 
     process(args, print, runCommand) {
         // TODO: Commit message bug
+        // This update satage behavior is so weird
+        // Needs one before and two after to work
         this.updateStage()
         args.shift()
         if (args[0] === 'commit' && args.length > 1) {
@@ -130,17 +133,24 @@ class ApiConnection extends Component {
             return ev.returnValue = 'Are you sure you want to close?'
         })
         return (
-            <div>
-                <GitTerminal
-                    process = {this.process}
-                    getter = {this.getter}
-                />
-                <Stage
-                    fileStage = {this.state.fileStage}
-                    newFile = {this.newFile}
-                    deleteFile = {this.deleteFile}
-                    // TODO: Pass down stage elements, addFile and deleteFile
-                />
+            <div class="container">
+                <div class="terminal">
+                    <GitTerminal
+                        process = {this.process}
+                        getter = {this.getter}
+                    />
+                </div>
+                <div class="graph">
+                    <Graph />
+                </div>
+                <div class="stage">
+                    <Stage
+                        fileStage = {this.state.fileStage}
+                        newFile = {this.newFile}
+                        deleteFile = {this.deleteFile}
+                        // TODO: Pass down stage elements, addFile and deleteFile
+                    />
+                </div>
             </div>
         )
     }
