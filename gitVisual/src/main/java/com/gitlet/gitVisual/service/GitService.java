@@ -1,35 +1,51 @@
 package com.gitlet.gitVisual.service;
 
 import com.gitlet.gitVisual.dao.GitDao;
+import com.gitlet.gitVisual.model.CytoscapeObj;
 import com.gitlet.gitVisual.model.DataFile;
 import com.gitlet.gitVisual.model.GitletException;
 import com.gitlet.gitVisual.model.Repo;
+import com.gitlet.gitVisual.model.repo.CytoscapeElements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.lang.reflect.Array;
+import java.util.*;
 
 //FIXME: page is still in progress
 @Service
 public class GitService {
     /**In-memory database.*/
     private static GitDao _gitdao;
+    /**Queue of latest git cytooscape elements generate.*/
+    private static Deque<CytoscapeElements> _elements;
 
     @Autowired
     public GitService(@Qualifier("gitDao") GitDao gitDao) {
         this._gitdao = gitDao;
+        this._elements = new ArrayDeque<>();
     }
 
     public GitService() {
         this._gitdao = new GitDao();
     }
 
+    /**
+     * Returns the latest cytoscape element update from git commands.
+     * @param uuid specifies the user.
+     * @return list of elements.
+     */
+    public CytoscapeElements getLatestElements(UUID uuid) {
+        return _elements.poll();
+    }
 
-
+    /**
+     * Returns the status of all files current in a user's directory.
+     * @param uuid specifies the user.
+     * @return list of all files status represented by Datafiles.
+     */
     public List<DataFile> getFilesStructure(UUID uuid) {
         return _gitdao.getFileStructure(uuid);
     }
@@ -44,6 +60,7 @@ public class GitService {
     }
     /**
      * Removes user with UUID uuid from database.
+     * @param uuid specifies the user.
      */
     public void removeUser(UUID uuid) {
         _gitdao.removeUser(uuid);
@@ -147,6 +164,12 @@ public class GitService {
         rightArgs(1, args);
         _gitdao.initRepo(uuid);
         _gitdao.getRepo(uuid).init();
+
+        //create the initial git element
+        CytoscapeObj initial = CytoscapeObj.newNode(_gitdao.getRepo(uuid).getHead());
+        CytoscapeElements eles = new CytoscapeElements();
+        eles.addNode(initial);
+        _elements.add(eles);
     }
 
     private static void add(UUID uuid,String... args) {
@@ -165,8 +188,21 @@ public class GitService {
     private static void commit(UUID uuid, String... args) {
         rightArgs(2, args);
         alreadyInit(uuid);
+
         Repo r = _gitdao.getRepo(uuid);
+        //get the id of the parent node
+        String parent = r.getHead();
         r.commit(args[1]);
+        if (r.getHead() != parent) {//if the commit was successful
+            //create the new commit node
+            CytoscapeObj node = CytoscapeObj.newNode(r.getHead(), parent);
+            //create new edge between the two nodes
+            CytoscapeObj edge = CytoscapeObj.newEdge(parent, node.getId());
+            CytoscapeElements eles = new CytoscapeElements();
+            eles.addNode(node);
+            eles.addEdge(edge);
+            _elements.add(eles);
+        }
     }
     private static String log(UUID uuid, String... args) {
         rightArgs(1, args);
@@ -240,7 +276,20 @@ public class GitService {
         rightArgs(2, args);
         alreadyInit(uuid);
         Repo r = _gitdao.getRepo(uuid);
-        return r.merge(args[1]);
+        String parent = r.getHead();
+        String result = r.merge(args[1]);
+
+        if (r.getHead() != parent) {
+            CytoscapeObj mergedNode = CytoscapeObj.newNode(r.getHead(), parent);
+            CytoscapeObj edge1 = CytoscapeObj.newEdge(parent, mergedNode.getId());
+            CytoscapeObj edge2 = CytoscapeObj.newEdge(r.getCommit(r.getHead()).secondParent(), mergedNode.getId());
+            CytoscapeElements eles = new CytoscapeElements();
+            eles.addNode(mergedNode);
+            eles.addEdge(edge1);
+            eles.addEdge(edge2);
+            _elements.add(eles);
+        }
+        return result;
     }
 
     private static void addRemote(UUID uuid, String... args) {
