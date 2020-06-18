@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="c937569b-44e5-423e-b46c-e95e561fa7df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/ApiConnection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/src/Stage.js" afterDir="false" />
+=======
     <list default="true" id="b5510036-9602-4338-b712-d3e0b8174921" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/CytoscapeObj.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual/model/repo/CytoscapeElements.java" afterDir="false" />
@@ -17,53 +23,26 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/api/GitController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/dao/GitDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/dao/GitDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/service/GitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gitlet/gitVisual/service/GitService.class" afterDir="false" />
+>>>>>>> c57b4ff0dc3af7979d67e7f4d4a900071c492f43
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1cCahCVjHKDVZJj2LFKfH54uvqj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1d5Srknd01y1f8GkvFkHouuT6vK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.gitlet.gitVisual.model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/gitlet/gitVisual" />
-      <recent name="$PROJECT_DIR$/src/main/java" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.GitVisualApplication">
+  <component name="RunManager">
     <configuration name="GitVisualApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gitlet.gitVisual.GitVisualApplication" />
       <module name="gitVisual" />
@@ -77,113 +56,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceTests.addTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gitVisual" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gitlet.gitVisual.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gitlet.gitVisual.service" />
-      <option name="MAIN_CLASS_NAME" value="com.gitlet.gitVisual.service.ServiceTests" />
-      <option name="METHOD_NAME" value="addTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceTests.commitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gitVisual" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gitlet.gitVisual.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gitlet.gitVisual.service" />
-      <option name="MAIN_CLASS_NAME" value="com.gitlet.gitVisual.service.ServiceTests" />
-      <option name="METHOD_NAME" value="commitTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceTests.editFileTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gitVisual" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gitlet.gitVisual.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gitlet.gitVisual.service" />
-      <option name="MAIN_CLASS_NAME" value="com.gitlet.gitVisual.service.ServiceTests" />
-      <option name="METHOD_NAME" value="editFileTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceTests.initTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gitVisual" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gitlet.gitVisual.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gitlet.gitVisual.service" />
-      <option name="MAIN_CLASS_NAME" value="com.gitlet.gitVisual.service.ServiceTests" />
-      <option name="METHOD_NAME" value="initTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.GitVisualApplication" />
-      <item itemvalue="JUnit.ServiceTests.editFileTest" />
-      <item itemvalue="JUnit.ServiceTests.initTest" />
-      <item itemvalue="JUnit.ServiceTests.addTest" />
-      <item itemvalue="JUnit.ServiceTests.commitTest" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GitVisualApplication" />
-        <item itemvalue="JUnit.ServiceTests.commitTest" />
-        <item itemvalue="JUnit.ServiceTests.addTest" />
-        <item itemvalue="JUnit.ServiceTests.initTest" />
-        <item itemvalue="JUnit.ServiceTests.editFileTest" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b5510036-9602-4338-b712-d3e0b8174921" name="Default Changelist" comment="" />
-      <created>1590035145764</created>
+      <changelist id="c937569b-44e5-423e-b46c-e95e561fa7df" name="Default Changelist" comment="" />
+      <created>1591652977500</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1590035145764</updated>
+      <updated>1591652977500</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
+    <state width="914" height="156" key="GridCell.Tab.0.bottom" timestamp="1591735895367">
+      <screen x="2560" y="0" width="1920" height="1080" />
+=======
     <state x="364" y="84" key="#Notifications" timestamp="1590088719425">
       <screen x="0" y="23" width="1440" height="792" />
     </state>
@@ -342,20 +238,29 @@
     <state x="887" y="407" key="com.intellij.ide.util.TipDialog/0.23.2560.1326@0.23.2560.1326" timestamp="1590888116939" />
     <state x="968" y="149" width="1949" height="1033" key="dock-window-1" timestamp="1590645503167">
       <screen x="0" y="23" width="2560" height="1326" />
+>>>>>>> c57b4ff0dc3af7979d67e7f4d4a900071c492f43
     </state>
-    <state x="968" y="149" width="1949" height="1033" key="dock-window-1/0.23.2560.1326@0.23.2560.1326" timestamp="1590645503167" />
-    <state x="451" y="23" width="837" height="795" key="find.popup" timestamp="1590788236878">
-      <screen x="0" y="23" width="1440" height="795" />
+    <state width="914" height="156" key="GridCell.Tab.0.bottom/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.center" timestamp="1591735895367">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state x="451" y="23" width="837" height="795" key="find.popup/0.23.1440.795@0.23.1440.795" timestamp="1590788236878" />
-    <state x="526" y="189" key="run.anything.popup" timestamp="1590086958574">
-      <screen x="0" y="23" width="1440" height="792" />
+    <state width="914" height="156" key="GridCell.Tab.0.center/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.left" timestamp="1591735895367">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
+<<<<<<< HEAD
+    <state width="914" height="156" key="GridCell.Tab.0.left/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+    <state width="914" height="156" key="GridCell.Tab.0.right" timestamp="1591735895367">
+      <screen x="2560" y="0" width="1920" height="1080" />
+    </state>
+    <state width="914" height="156" key="GridCell.Tab.0.right/2560.0.1920.1080/0.0.2560.1440@2560.0.1920.1080" timestamp="1591735895367" />
+=======
     <state x="526" y="189" key="run.anything.popup/0.23.1440.792@0.23.1440.792" timestamp="1590086958574" />
     <state x="860" y="206" width="670" height="58" key="search.everywhere.popup" timestamp="1592173092825">
       <screen x="0" y="23" width="1440" height="804" />
     </state>
     <state x="860" y="206" width="670" height="58" key="search.everywhere.popup/0.23.1440.804@0.23.1440.804" timestamp="1592173092825" />
     <state x="1529" y="325" width="670" height="676" key="search.everywhere.popup/0.23.2560.1325@0.23.2560.1325" timestamp="1590035538974" />
+>>>>>>> c57b4ff0dc3af7979d67e7f4d4a900071c492f43
   </component>
 </project>
