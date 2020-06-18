@@ -46,13 +46,6 @@ class Stage extends React.Component {
                     new file
                 </button>
                 <div className="stage-area">
-                    {/* {this.state.stageArea.map(stageItem => (
-                        <File
-                            key = {stageItem.id}
-                            onDelete={() => this.deleteFile(stageItem.name)}
-                            file={stageItem}
-                        />
-                    ))} */}
                     {this.props.fileStage.map(item => (
                         <File 
                             key = {item.id}
