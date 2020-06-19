@@ -10,7 +10,9 @@ class ApiConnection extends Component {
         this.state = {
             address: 'http://localhost:8080/api/v1/git',
             UUID: '',
-            fileStage: []
+            fileStage: [],
+            nodes: [],
+            edges: [],
         }
         this.process = this.process.bind(this)
         this.getMap = this.getMap.bind(this)
@@ -18,6 +20,8 @@ class ApiConnection extends Component {
         this.printUUID = this.printUUID.bind(this)
         this.updateStage = this.updateStage.bind(this)
         this.deleteFile = this.deleteFile.bind(this)
+
+        this.tester = this.tester.bind(this)
     }
 
     getMap(mapping) {
@@ -126,6 +130,15 @@ class ApiConnection extends Component {
         })
     }
 
+    tester(args, print, runCommand) {
+        axios.get(this.getMap('/elements')).then(response => {
+            console.log(response.data)
+            this.setState({
+                nodes: response.nodes
+            })
+        })
+    }
+
     render() {
         window.addEventListener("beforeunload", (ev) => {
             axios.delete(this.getMap(''))
@@ -137,11 +150,14 @@ class ApiConnection extends Component {
                 <div class="terminal">
                     <GitTerminal
                         process = {this.process}
-                        getter = {this.getter}
+                        tester = {this.tester}
                     />
                 </div>
                 <div class="graph">
-                    <Graph />
+                    <Graph 
+                        nodes = {this.state.nodes}
+                        edges = {this.state.edges}
+                    />
                 </div>
                 <div class="stage">
                     <Stage

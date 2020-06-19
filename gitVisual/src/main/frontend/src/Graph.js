@@ -146,8 +146,8 @@ class Graph extends Component {
                 <button onClick={this.commit}>commit</button>
                 <CytoscapeComponent
                     elements={CytoscapeComponent.normalizeElements({
-                        nodes: this.state.nodes,
-                        edges: this.state.edges
+                        nodes: this.props.nodes,
+                        edges: this.props.edges
                     })}
                     style={{ width: '600px', height: '600px' }}
                     stylesheet={this.stylesheet()}

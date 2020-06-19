@@ -22,13 +22,15 @@ function GitTerminal(props) {
                 'git command <operands>': '',
                 
                 'git': props.process,
+                'tester': props.tester,
             }}
             descriptions={{
                 'git init': 'Create an empty Git repository',
                 'git add <file name>': 'Add a file to the staging area',
                 'git rm <file name>': 'Remove a file from the index',
                 'git commit <message>': 'Record changes to the repository',
-                'git commad <operands': 'A template to create more git commands',
+                'git command <operands>': 'A template to create more git commands',
+                'tester': 'testing various backend requests',
                 
                 'git': false,
                 'color': false,
