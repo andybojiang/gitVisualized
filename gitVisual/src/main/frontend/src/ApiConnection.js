@@ -119,7 +119,7 @@ class ApiConnection extends Component {
     }
 
     updateStage() {
-        console.log('updating...')
+        console.log('updating stage...')
         axios.get(this.getMap('')).then(response => {
             this.setState({
                 fileStage: response.data
@@ -130,12 +130,40 @@ class ApiConnection extends Component {
         })
     }
 
+    // updateGraph() {
+    //     console.log('updating graph...')
+    //     axios.get(this.getMap('/elements')).then(response => {
+    //         console.log(response.data)
+    //         let newNodes = response.data.nodes
+    //         let newEdges = response.data.edges
+    //         console.log('new Nodes: ' + newNodes)
+    //         console.log('new Edges: ' + newEdges)
+    //     })
+    // }
+
     tester(args, print, runCommand) {
+        console.log('updating graph...')
         axios.get(this.getMap('/elements')).then(response => {
             console.log(response.data)
-            this.setState({
-                nodes: response.nodes
+            // let newNodes = response.data.nodes
+            // let newEdges = response.data.edges
+            // newNodes[0].data = {id: newNodes[0].id, label: 'dummy label'}
+            // newNodes[0].position = {x: 100, y: 100}
+            let newNodes = response.data.nodes.map(node => {
+                node.data = {id: node.id, label: node.id}
+                node.position = {x: 100, y: 100}
+                return node
             })
+            let newEdges = response.data.edges.map(edge => {
+                edge.data = {source: edge.target, target: edge.source}
+                return edge
+            })
+            this.setState({
+                nodes: this.state.nodes.concat(newNodes),
+                edges: this.state.edges.concat(newEdges)
+            })
+            console.log(newNodes[0])
+            console.log(newEdges)
         })
     }
 
