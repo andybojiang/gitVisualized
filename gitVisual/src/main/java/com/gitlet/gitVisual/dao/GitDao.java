@@ -12,6 +12,13 @@ import java.util.*;
 public class GitDao {
 
 
+    public Map<String, String> getBranchHeads(UUID id) {
+        Repo r = _repos.get(id);
+        Map m = r.getBranches();
+        m.put("HEAD", r.getHead());
+        return m;
+    }
+
 
     /**
      * Reads files in a user's system and convert them to "datafile" objects that describe their status

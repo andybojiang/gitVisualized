@@ -1,10 +1,7 @@
 package com.gitlet.gitVisual.model;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -665,6 +662,10 @@ public class Repo extends Gitent{
         }
     }
 
+    public HashMap<String, String> getBranches() {
+        return this._branches;
+    }
+
     public HashMap<String, String> get_stage() {
         return _stage;
     }
@@ -693,8 +694,6 @@ public class Repo extends Gitent{
     protected String _head;
     /**Maps the name of the branch to the encryption of its corresponding commit.*/
     protected HashMap<String, String> _branches;
-
-
 
     /** Represents the staging area. Maps _name of an added blob to its _encryption.*/
     protected HashMap<String, String> _stage;

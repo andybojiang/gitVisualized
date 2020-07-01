@@ -32,10 +32,13 @@ public class CytoscapeObj {
      * @param id unique id assigned to the object. For commits, it will be the hash.
      * @param parent first parent of the node.
      */
-    public static CytoscapeObj newNode(String id, String parent) {
+    public static CytoscapeObj newNode(String id, String msg, String time, String parent, String parent2) {
         CytoscapeObj node = new CytoscapeObj();
+        node.data.put("msg", msg);
+        node.data.put("time", time);
         node.data.put("id", id);
         node.data.put("parent", parent);
+        node.data.put("parent2", parent2);
         return node;
     }
 
@@ -68,6 +71,33 @@ public class CytoscapeObj {
     public String getTarget() {
         if (data.containsKey("target")) {
             return data.get("target");
+        }
+        return null;
+    }
+
+    public String getParent() {
+        if (data.containsKey("parent")) {
+            return data.get("parent");
+        }
+        return null;
+    }
+    public String getParent2() {
+        if (data.containsKey("parent2")) {
+            return data.get("parent2");
+        }
+        return null;
+    }
+
+    public String getTime() {
+        if (data.containsKey("time")) {
+            return data.get("time");
+        }
+        return null;
+    }
+
+    public String getMsg() {
+        if (data.containsKey("msg")) {
+            return data.get("msg");
         }
         return null;
     }

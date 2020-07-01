@@ -1,4 +1,4 @@
-package com.gitlet.gitVisual.model.repo;
+package com.gitlet.gitVisual.model;
 
 
 import com.gitlet.gitVisual.model.CytoscapeObj;
@@ -11,7 +11,6 @@ public class CytoscapeElements {
         nodes = new ArrayList<>();
         edges = new ArrayList<>();
     }
-
 
     public void addNode(CytoscapeObj node) {
         nodes.add(node);

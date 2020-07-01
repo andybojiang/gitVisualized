@@ -1,18 +1,14 @@
 package com.gitlet.gitVisual.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gitlet.gitVisual.model.CytoscapeObj;
 import com.gitlet.gitVisual.model.DataFile;
 import com.gitlet.gitVisual.model.GitCommand;
-import com.gitlet.gitVisual.model.repo.CytoscapeElements;
+import com.gitlet.gitVisual.model.CytoscapeElements;
 import com.gitlet.gitVisual.service.GitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/git")
@@ -66,6 +62,12 @@ public class GitController {
     @GetMapping(path = "{id}/elements")
     public CytoscapeElements getLatestElements(@PathVariable("id") UUID id) {
         return this._gitService.getLatestElements(id);
+    }
+
+    //getter for a list of branch heads
+    @GetMapping(path = "{id}/branches")
+    public Map<String, String> getBranchHeads(@PathVariable("id") UUID id) {
+        return this._gitService.getBranchHeads(id);
     }
 
 }
