@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import GitTerminal from './GitTerminal';
-import Stage from './Stage'
+import Stage from '../Stage'
 import Graph from './Graph'
 
 class ApiConnection extends Component {
@@ -118,7 +118,7 @@ class ApiConnection extends Component {
         print(this.state.UUID)
     }
 
-    updateStage() {
+    async updateStage() {
         console.log('updating stage...')
         axios.get(this.getMap('')).then(response => {
             this.setState({

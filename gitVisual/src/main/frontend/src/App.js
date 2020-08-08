@@ -1,8 +1,11 @@
-import React from 'react'
-import ApiConnection from './ApiConnection'
+import React, { useContext } from 'react'
+import ApiConnection from './components/ApiConnection'
 
 
 import './App.css';
+import { useContext } from 'react';
+import GitTerminal from './components/GitTerminal';
+import Graph from './components/Graph';
 
 
 class App extends React.Component {
@@ -16,6 +19,16 @@ class App extends React.Component {
       </>
     );
   }
+}
+
+function App() {
+  return (
+    <APIContext>
+      <GitTerminal />
+      <Graph />
+      <Stage />
+    </APIContext>
+  )
 }
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import File from './File'
+import File from './components/File'
 
 let fileIndex = 0
 
