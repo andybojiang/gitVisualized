@@ -1,17 +1,11 @@
 package com.gitlet.gitVisual.service;
 
 import com.gitlet.gitVisual.dao.GitDao;
-import com.gitlet.gitVisual.model.CytoscapeObj;
-import com.gitlet.gitVisual.model.DataFile;
-import com.gitlet.gitVisual.model.GitletException;
-import com.gitlet.gitVisual.model.Repo;
-import com.gitlet.gitVisual.model.repo.CytoscapeElements;
+import com.gitlet.gitVisual.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.lang.reflect.Array;
 import java.util.*;
 
 //FIXME: page is still in progress
@@ -22,6 +16,7 @@ public class GitService {
     /**Queue of latest git cytooscape elements generate.*/
     private static Deque<CytoscapeElements> _elements;
 
+
     @Autowired
     public GitService(@Qualifier("gitDao") GitDao gitDao) {
         this._gitdao = gitDao;
@@ -30,6 +25,12 @@ public class GitService {
 
     public GitService() {
         this._gitdao = new GitDao();
+    }
+
+
+
+    public Map<String, String> getBranchHeads(UUID id) {
+        return this._gitdao.getBranchHeads(id);
     }
 
     /**
@@ -166,7 +167,8 @@ public class GitService {
         _gitdao.getRepo(uuid).init();
 
         //create the initial git element
-        CytoscapeObj initial = CytoscapeObj.newNode(_gitdao.getRepo(uuid).getHead());
+        Commit c = _gitdao.getRepo(uuid).getCommit(_gitdao.getRepo(uuid).getHead());
+        CytoscapeObj initial = CytoscapeObj.newNode(c.getEncryption(), c.getMessage(), c.time(), null, null);
         CytoscapeElements eles = new CytoscapeElements();
         eles.addNode(initial);
         _elements.add(eles);
@@ -195,7 +197,8 @@ public class GitService {
         r.commit(args[1]);
         if (r.getHead() != parent) {//if the commit was successful
             //create the new commit node
-            CytoscapeObj node = CytoscapeObj.newNode(r.getHead(), parent);
+            Commit c = r.getCommit(r.getHead());
+            CytoscapeObj node = CytoscapeObj.newNode(c.getEncryption(), c.getMessage(), c.time(), parent, null);
             //create new edge between the two nodes
             CytoscapeObj edge = CytoscapeObj.newEdge(parent, node.getId());
             CytoscapeElements eles = new CytoscapeElements();
@@ -280,9 +283,10 @@ public class GitService {
         String result = r.merge(args[1]);
 
         if (r.getHead() != parent) {
-            CytoscapeObj mergedNode = CytoscapeObj.newNode(r.getHead(), parent);
+            Commit c = r.getCommit(r.getHead());
+            CytoscapeObj mergedNode = CytoscapeObj.newNode(r.getHead(), c.getMessage(), c.time(), parent, c.secondParent());
             CytoscapeObj edge1 = CytoscapeObj.newEdge(parent, mergedNode.getId());
-            CytoscapeObj edge2 = CytoscapeObj.newEdge(r.getCommit(r.getHead()).secondParent(), mergedNode.getId());
+            CytoscapeObj edge2 = CytoscapeObj.newEdge(c.secondParent(), mergedNode.getId());
             CytoscapeElements eles = new CytoscapeElements();
             eles.addNode(mergedNode);
             eles.addEdge(edge1);
